@@ -1,9 +1,16 @@
+@import '@shared/_colors', '@shared/_mixins';
+@import '~bootstrap/scss/bootstrap';
+@import '~react-toastify/dist/ReactToastify.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css');
+
+html,
 body {
   margin: 0 auto;
-  padding: 50;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  background-color: #e5e5e5;
 }
-
-div {
-  background-color: teal;
-  padding: 15px;
+* {
+  box-sizing: border-box;
 }

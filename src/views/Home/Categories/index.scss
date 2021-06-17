@@ -1,0 +1,30 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.Categories {
+  padding: 1rem;
+  .Heading {
+    @include flex($a: center);
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    flex-shrink: 0;
+    gap: 1rem;
+    &::before {
+      content: '';
+      display: block;
+      background-color: $gray;
+      height: 1px;
+      flex-grow: 1;
+    }
+    &::after {
+      content: '';
+      display: block;
+      background-color: $gray;
+      height: 1px;
+      flex-grow: 1;
+    }
+  }
+  .Products {
+    @include flex($a: center, $w: wrap);
+  }
+}

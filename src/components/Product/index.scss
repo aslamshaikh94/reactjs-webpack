@@ -1,0 +1,25 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.Product {
+  padding: 15px;
+  position: relative;
+  width: 25%;
+  margin-bottom: 1rem;
+  .Group {
+    @include flex($j: center);
+    position: relative;
+    background-color: #b6cacb;
+  }
+  img {
+    width: 100%;
+  }
+  .Title {
+    left: 10px;
+    right: 10px;
+    padding: 0.5rem 1rem;
+    background-color: $white;
+    position: absolute;
+    bottom: 1rem;
+    text-align: center;
+  }
+}

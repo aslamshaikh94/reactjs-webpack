@@ -1,0 +1,37 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.OurClients {
+  .Heading {
+    @include flex($a: center);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+    flex-shrink: 0;
+    gap: 1rem;
+    &::before {
+      content: '';
+      display: block;
+      background-color: $gray;
+      height: 1px;
+      flex-grow: 1;
+    }
+    &::after {
+      content: '';
+      display: block;
+      background-color: $gray;
+      height: 1px;
+      flex-grow: 1;
+    }
+  }
+  .Clients {
+    @include flex($j: space-between);
+    margin-top: 2rem;
+    > div {
+      @include flex($a: center);
+    }
+    .Client {
+      width: 100%;
+    }
+  }
+}

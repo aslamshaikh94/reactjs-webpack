@@ -1,0 +1,54 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.Product {
+  background-color: $white;
+  border: 1px solid rgba($silver, 0.1);
+  width: 25%;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  .ProductImg {
+    margin-bottom: 1rem;
+    img {
+      width: 100%;
+      height: 300px;
+    }
+  }
+  .ProductLink {
+    text-decoration: none;
+  }
+  .Title {
+    font-size: 1.1rem;
+    color: $black;
+    font-weight: bold;
+  }
+  .Price {
+    color: $black;
+    .Regular {
+      text-decoration: line-through;
+    }
+    .Sale {
+      font-weight: bold;
+    }
+  }
+  &:hover {
+    .Overlap {
+      opacity: 1;
+    }
+  }
+  .Overlap {
+    opacity: 0;
+    @include flex($a: center, $j: center);
+    background-color: rgba($silver, 0.2);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .ViewBtn {
+      background-color: $blue;
+      color: $white;
+      padding: 10px 20px;
+    }
+  }
+}

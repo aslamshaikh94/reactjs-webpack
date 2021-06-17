@@ -1,0 +1,62 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.Testimonials {
+  padding: 5.625rem 0;
+  .Heading {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 800;
+  }
+  .SubTitle {
+    text-align: center;
+  }
+  .TestimonialGroup {
+    @include flex($a: center);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+}
+
+.Testimonial {
+  .Comment {
+    background-color: $white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      display: block;
+      position: absolute;
+      z-index: 10;
+      border: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      margin-left: -10px;
+      left: 50%;
+      border-top: 10px solid $white;
+      bottom: -10px;
+    }
+    h4 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 0.8rem;
+      margin-bottom: 0;
+    }
+  }
+  .UserInfo {
+    text-align: center;
+    margin-top: 1.5rem;
+    h5 {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+    p {
+      font-size: 0.7rem;
+    }
+  }
+}

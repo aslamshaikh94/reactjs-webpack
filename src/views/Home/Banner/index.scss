@@ -1,0 +1,15 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.Banner {
+  @include flex($a: center, $j: center);
+  img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  .SearchBox {
+    position: absolute;
+    width: 100%;
+    max-width: 600px;
+  }
+}

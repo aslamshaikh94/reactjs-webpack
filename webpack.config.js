@@ -81,6 +81,7 @@ module.exports = {
       '@reducers': path.resolve(__dirname, 'src/reducers'),
       '@actions': path.resolve(__dirname, 'src/actions'),
       '@shared': path.resolve(__dirname, 'src/shared'),
+      '@components': path.resolve(__dirname, 'src/components'),
       '@views': path.resolve(__dirname, 'src/views'),
       '@constants': path.resolve(__dirname, 'src/constants'),
       '@api': path.resolve(__dirname, 'src/api')

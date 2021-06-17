@@ -1,10 +1,16 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import { StoreProvider } from '@store'
 import App from './App'
 
-ReactDom.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
-)
+const MainApp = () => {
+  return (
+    // <React.StrictMode>
+    <StoreProvider>
+      <App />
+    </StoreProvider>
+    // </React.StrictMode>
+  )
+}
+
+ReactDom.render(<MainApp />, document.getElementById('root'))

@@ -1,0 +1,11 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.Section {
+  padding: 4rem 0;
+  &.White {
+    background-color: $white;
+  }
+  &.Gray {
+    background-color: #f6f7f9;
+  }
+}
