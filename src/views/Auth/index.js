@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import history from '@history'
-import {
-  callUserSignupApi,
-  callUserSigninApi,
-  callCurrentUserTokenIdApi
-} from '@api'
+import { callUserSigninApi, callCurrentUserTokenIdApi } from '@api'
 import { userAuthSuccessAction } from '@actions'
 import { isUserLoggedIn } from '@utils'
 import {
@@ -25,13 +21,12 @@ const Auth = () => {
   const { dispatch } = useStore()
 
   const [error, setError] = useState({})
-  const [isSignup, setIsSignup] = useState(false)
   const [user, setUser] = useState({
     email: '',
     password: '',
     confirmPassword: ''
   })
-  const { email, password, confirmPassword } = user
+  const { email, password } = user
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -39,14 +34,9 @@ const Auth = () => {
     setError({ ...error, [name]: '' })
   }
 
-  const {
-    passwordNotMatchErrorMessage,
-    passwordErrorMessage,
-    emailErrorMessage
-  } = ERROR_MESSAGES
+  const { passwordErrorMessage, emailErrorMessage } = ERROR_MESSAGES
 
   const isFormValid = () => {
-    let confirmPass
     let validPass
     let validEmail
     if (!validateEmail(email)) {
@@ -55,13 +45,9 @@ const Auth = () => {
     if (!validatePassword(password)) {
       validPass = passwordErrorMessage
     }
-    if (isSignup && password !== confirmPassword) {
-      confirmPass = passwordNotMatchErrorMessage
-    }
-    if (confirmPass || validPass || validEmail) {
+    if (validPass || validEmail) {
       setError({
         ...error,
-        confirmPassword: confirmPass,
         password: validPass,
         email: validEmail
       })
@@ -78,18 +64,20 @@ const Auth = () => {
 
   const handleSignIn = async () => {
     if (isFormValid()) {
-      const { user: { uid, displayName, email } = {} } =
-        await callUserSigninApi(payload)
-      const jwtToken = await callCurrentUserTokenIdApi()
-      dispatch(
-        userAuthSuccessAction({
-          uid,
-          displayName,
-          token: jwtToken,
-          email
-        })
-      )
-      history.push(DASHBOARD_ROUTE)
+      const { status, data = {} } = await callUserSigninApi(payload)
+      const { user: { uid, displayName, email } = {} } = data
+      if (status === 200) {
+        const jwtToken = await callCurrentUserTokenIdApi()
+        dispatch(
+          userAuthSuccessAction({
+            uid,
+            displayName,
+            token: jwtToken,
+            email
+          })
+        )
+        history.push(DASHBOARD_ROUTE)
+      }
     }
   }
 
@@ -100,7 +88,7 @@ const Auth = () => {
   return (
     <div className='Auth'>
       <div className='FormWrapper'>
-        <h3 className='Heading'>Sign {isSignup ? 'Up' : 'In'}</h3>
+        <h3 className='Heading'>Sign </h3>
         <div className='FromGroup'>
           <InputField
             label='Email address'
@@ -117,33 +105,16 @@ const Auth = () => {
             error={error.password}
             onChange={handleChange}
           />
-          {isSignup && (
-            <>
-              <InputField
-                label='Confirm Password'
-                name='confirmPassword'
-                value={confirmPassword}
-                type='password'
-                error={error.confirmPassword}
-                onChange={handleChange}
-              />
-            </>
-          )}
 
-          <Button variant='dark' size='lg' block onClick={handleSignIn}>
+          <Button variant='dark' block onClick={handleSignIn}>
             Submit
           </Button>
           <Link to={RESET_PASSWORD_ROUTE} className='ResetPassword Link'>
             Forgot Password
           </Link>
-          <Button
-            variant='link'
-            size='md'
-            block
-            onClick={() => history.push(REGISTER_ROUTE)}
-          >
-            Don't have account?
-          </Button>
+          <p className='LinkText'>
+            Not a member? <Link to={REGISTER_ROUTE}>Sign up</Link> now
+          </p>
         </div>
       </div>
       <div className='Image'>

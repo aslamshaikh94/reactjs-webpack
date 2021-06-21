@@ -81,6 +81,10 @@
   }
 }
 
+label.form-label {
+  font-size: 0.8rem;
+}
+
 @media screen and (max-width: 567px) {
   .tags-input {
     width: calc(100vw - 32px);

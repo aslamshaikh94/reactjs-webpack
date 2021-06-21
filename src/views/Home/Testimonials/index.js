@@ -1,5 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
+import Carousel from 'react-elastic-carousel'
+import Item from '@shared/Item'
 import UserphotoUrl from '@assets/images/userphoto.png'
 import './index.scss'
 
@@ -22,6 +24,13 @@ const Testimonial = () => {
   )
 }
 
+const breakPoints = [
+  { width: 1, itemsToShow: 3 },
+  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 }
+]
+
 const Testimonials = () => {
   return (
     <div className='Testimonials'>
@@ -31,9 +40,29 @@ const Testimonials = () => {
       </p>
       <Container>
         <div className='TestimonialGroup'>
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
+          <Carousel breakPoints={breakPoints}>
+            <Item>
+              <Testimonial />
+            </Item>
+            <Item>
+              <Testimonial />
+            </Item>
+            <Item>
+              <Testimonial />
+            </Item>
+            <Item>
+              <Testimonial />
+            </Item>
+            <Item>
+              <Testimonial />
+            </Item>
+            <Item>
+              <Testimonial />
+            </Item>
+            <Item>
+              <Testimonial />
+            </Item>
+          </Carousel>
         </div>
       </Container>
     </div>

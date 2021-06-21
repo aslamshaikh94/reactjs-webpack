@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import { useStore } from '@store/'
 import history from '@history'
-import { callUserSignupApi, callCurrentUserTokenIdApi } from '@api'
+import {
+  callUserSignupApi,
+  callCurrentUserTokenIdApi,
+  callSetUserDetailsApi
+} from '@api'
 import { userAuthSuccessAction } from '@actions'
 import { validatePassword, validateEmail } from '@utils'
 import {
@@ -10,7 +14,7 @@ import {
   LOGIN_ROUTE
 } from '@constants/routes'
 import { ERROR_MESSAGES } from '@constants/'
-import { InputField } from '@shared/FormFields'
+import { InputField, CheckRadio } from '@shared/FormFields'
 import { Link } from 'react-router-dom'
 import { Button, Row, Col } from 'react-bootstrap'
 import LoginbgURL from '@assets/images/loginbg.jpg'
@@ -20,13 +24,22 @@ const Register = () => {
   const { dispatch } = useStore()
 
   const [error, setError] = useState({})
-
   const [user, setUser] = useState({
+    isSupplier: false,
     email: '',
     password: '',
     confirmPassword: ''
   })
-  const { email, password, confirmPassword } = user
+
+  const {
+    firstName,
+    lastName,
+    companyName,
+    email,
+    isSupplier,
+    password,
+    confirmPassword
+  } = user
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -67,27 +80,30 @@ const Register = () => {
   }
 
   const payload = {
+    firstName,
+    lastName,
+    companyName,
     email,
-    password
+    isSupplier
   }
 
   const handleSignUp = async () => {
     if (isFormValid()) {
-      const { user: { uid, displayName, email } = {} } =
-        await callUserSignupApi({
-          ...payload,
-          isVendor: true
-        })
-      const jwtToken = await callCurrentUserTokenIdApi()
-      dispatch(
-        userAuthSuccessAction({
-          uid,
-          displayName,
-          token: jwtToken,
-          email
-        })
-      )
-      history.push(DASHBOARD_ROUTE)
+      const { status, data } = await callUserSignupApi({ email, password })
+      if (status === 200) {
+        const { user: { uid, displayName, email } = {} } = data
+        await callSetUserDetailsApi(uid, payload)
+        const jwtToken = await callCurrentUserTokenIdApi()
+        dispatch(
+          userAuthSuccessAction({
+            uid,
+            displayName,
+            token: jwtToken,
+            email
+          })
+        )
+        history.push(DASHBOARD_ROUTE)
+      }
     }
   }
 
@@ -101,26 +117,26 @@ const Register = () => {
               <InputField
                 label='First Name'
                 name='firstName'
-                value={email}
-                error={error.email}
+                value={firstName}
+                error={error.firstName}
                 onChange={handleChange}
               />
             </Col>
             <Col lg={6}>
               <InputField
                 label='Last Name'
-                name='firstName'
-                value={email}
-                error={error.email}
+                name='lastName'
+                value={lastName}
+                error={error.lastName}
                 onChange={handleChange}
               />
             </Col>
           </Row>
           <InputField
             label='Company Name'
-            name='firstName'
-            value={email}
-            error={error.email}
+            name='companyName'
+            value={companyName}
+            error={error.companyName}
             onChange={handleChange}
           />
           <InputField
@@ -146,22 +162,23 @@ const Register = () => {
             error={error.confirmPassword}
             onChange={handleChange}
           />
-
-          <Button variant='dark' size='lg' block onClick={handleSignUp}>
+          <CheckRadio
+            name='isSupplier'
+            checked={isSupplier}
+            optionsName={['Buyer', 'Supplier']}
+            optionsValue={[false, true]}
+            onChange={handleChange}
+            inline
+          />
+          <Button variant='dark' block onClick={handleSignUp}>
             Submit
           </Button>
-
           <Link to={RESET_PASSWORD_ROUTE} className='ResetPassword Link'>
             Forgot Password
           </Link>
-          <Button
-            variant='link'
-            size='md'
-            block
-            onClick={() => history.push(LOGIN_ROUTE)}
-          >
-            Already have an account?
-          </Button>
+          <p className='LinkText'>
+            Already a member? <Link to={LOGIN_ROUTE}>Login</Link> now
+          </p>
         </div>
       </div>
       <div className='Image'>

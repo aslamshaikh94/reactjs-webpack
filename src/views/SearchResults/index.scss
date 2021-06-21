@@ -1,0 +1,13 @@
+@import '@shared/_colors', '@shared/_mixins';
+.SearchResults {
+  @include wrapper;
+  .SearchGroup {
+    .SearchInput {
+      height: 45px !important;
+      font-size: 1rem !important;
+    }
+    .SearchButton {
+      font-size: 1rem !important;
+    }
+  }
+}

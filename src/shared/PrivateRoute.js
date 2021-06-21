@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { isUserLoggedIn } from '@utils'
-import { AUTH_ROUTE } from '@constants/routes'
+import { LOGIN_ROUTE } from '@constants/routes'
 
 const PrivateRoute = ({ component: Comp, ...props }) => {
   return (
@@ -14,7 +14,7 @@ const PrivateRoute = ({ component: Comp, ...props }) => {
           <Switch>
             <Redirect
               to={{
-                pathname: AUTH_ROUTE
+                pathname: LOGIN_ROUTE
               }}
             />
           </Switch>

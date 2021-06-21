@@ -1,4 +1,4 @@
-import { auth, db, storage, serverTimestamp } from '@src/firebase'
+import { auth, db, serverTimestamp } from '@src/firebase'
 import { storeDispatcher } from '@store'
 import { userSetUserDetailsSuccessAction } from '@actions'
 import addToaster from '@shared/Notification'
@@ -12,14 +12,14 @@ import { setLodingStatusAction } from '@actions'
  * @param {string} payload.password
  */
 export const callUserSignupApi = async payload => {
-  setLodingStatusAction(true)
+  storeDispatcher.dispatch(setLodingStatusAction(true))
   const { email, password } = payload
   try {
     const data = await auth.createUserWithEmailAndPassword(email, password)
-    setLodingStatusAction(false)
-    return data
+    storeDispatcher.dispatch(setLodingStatusAction(false))
+    return { status: 200, data }
   } catch (error) {
-    setLodingStatusAction(false)
+    storeDispatcher.dispatch(setLodingStatusAction(false))
     addToaster('error', error.message)
   }
 }
@@ -31,13 +31,13 @@ export const callUserSignupApi = async payload => {
  */
 export const callUserSigninApi = async payload => {
   const { email, password } = payload
-  setLodingStatusAction(true)
+  storeDispatcher.dispatch(setLodingStatusAction(true))
   try {
     const data = await auth.signInWithEmailAndPassword(email, password)
-    setLodingStatusAction(false)
-    return data
+    storeDispatcher.dispatch(setLodingStatusAction(false))
+    return { status: 200, data }
   } catch (error) {
-    setLodingStatusAction(false)
+    storeDispatcher.dispatch(setLodingStatusAction(false))
     addToaster('error', error.message)
   }
 }
@@ -51,14 +51,14 @@ export const callUserSignOutApi = () => {
 /** Reset user password, using user email
  */
 export const callUserPasswordResetApi = async email => {
-  setLodingStatusAction(true)
+  storeDispatcher.dispatch(setLodingStatusAction(true))
   try {
     const data = await auth.sendPasswordResetEmail(email)
-    setLodingStatusAction(false)
+    storeDispatcher.dispatch(setLodingStatusAction(false))
     addToaster('success', 'Please check inbox')
     return data
   } catch (error) {
-    setLodingStatusAction(false)
+    storeDispatcher.dispatch(setLodingStatusAction(false))
     addToaster('error', error.message)
   }
 }
@@ -83,16 +83,16 @@ export const callCurrentUserTokenIdApi = () => {
  * @param {Object} payload
  */
 export const callSetUserDetailsApi = async (uid, payload) => {
-  setLodingStatusAction(true)
+  storeDispatcher.dispatch(setLodingStatusAction(true))
   try {
     const data = await db
       .collection('users')
       .doc(uid)
       .set({ ...payload, createdAt: serverTimestamp }, { merge: true })
-    setLodingStatusAction(false)
-    return data
+    storeDispatcher.dispatch(setLodingStatusAction(false))
+    return { status: 200, data }
   } catch (error) {
-    setLodingStatusAction(false)
+    storeDispatcher.dispatch(setLodingStatusAction(false))
     addToaster('error', error.message)
   }
 }

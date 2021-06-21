@@ -10,7 +10,7 @@ const Whyus = () => {
         <Row>
           <Col lg={6}>
             <div className='Text'>
-              <h2>Why US</h2>
+              <h2 className='Heading'>Why US</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
                 mollitia, molestiae quas vel sint commodi repudiandae

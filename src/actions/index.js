@@ -6,21 +6,19 @@ import {
   BIDS_SUCCESS,
   EXPERT_PROFILES_SUCCESS,
   NOTIFICATION_SUCCESS,
-  PRODUCT_DETAILS_SUCCESS
+  PRODUCT_DETAILS_SUCCESS,
+  APPLICATION_LOADING_STATUS
 } from '@constants/actionsType'
 
 /**
- * Set Loader
- * @param {String} payload
+ * Sets loading status in the context store so that a loader can be
+ * displayed when appropriate
+ * @param {Boolean} payload Whether the app is in loading state
  */
-export const setLodingStatusAction = payload => {
-  const loader = document.querySelector('.Loader')
-  if (payload === true) {
-    loader.classList.add('ShowLoader')
-  } else {
-    loader.classList.remove('ShowLoader')
-  }
-}
+export const setLodingStatusAction = payload => ({
+  type: APPLICATION_LOADING_STATUS,
+  payload
+})
 
 /**
  * Sets user info and token in the context store
