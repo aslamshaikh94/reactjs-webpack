@@ -65,10 +65,7 @@ const Header = props => {
                       }
                       className='ProfileMenu'
                     >
-                      <Link
-                        to={`${DASHBOARD_ROUTE}${PRODUCTS_ROUTE}`}
-                        className='DeopdownLink'
-                      >
+                      <Link to={DASHBOARD_ROUTE} className='DeopdownLink'>
                         Dashboard
                       </Link>
                       <Link

@@ -9,7 +9,8 @@ import {
   LOGIN_ROUTE,
   RESET_PASSWORD_ROUTE,
   REGISTER_ROUTE,
-  SEARCH_ROUTE
+  SEARCH_ROUTE,
+  REGISTER_COMPANY_ROUTE
 } from '@constants/routes'
 import history from '@history/'
 import Header from '@src/components/Header'
@@ -21,6 +22,7 @@ const Dashboard = lazy(() => import('@views/Dashboard'))
 const NotFound = lazy(() => import('@views/NotFound'))
 const ResetPassword = lazy(() => import('@views/Auth/ResetPassword'))
 const Register = lazy(() => import('@views/Auth/Register'))
+const CompanyRegister = lazy(() => import('@views/Auth/CompanyRegister'))
 const SearchResults = lazy(() => import('@views/SearchResults'))
 
 import './style.scss'
@@ -46,6 +48,11 @@ const App = () => {
               exact
               path={RESET_PASSWORD_ROUTE}
               component={ResetPassword}
+            />
+            <Route
+              exact
+              path={REGISTER_COMPANY_ROUTE}
+              component={CompanyRegister}
             />
             <Route component={NotFound} />
           </Switch>

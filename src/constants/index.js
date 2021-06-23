@@ -43,3 +43,6 @@ export const ERROR_MESSAGES = {
   ifscCodeErrorMessage: 'Please enter IFSC code',
   branchLocationErrorMessage: 'Please enter branch location'
 }
+
+export const TAX_SUBTEXT =
+  'VAT is only needed to verify your company, not for any payment as CheMondis is free of charge. Please note that you can only do actions on CheMondis when giving correct company data.'

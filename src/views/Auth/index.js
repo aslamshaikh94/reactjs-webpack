@@ -105,7 +105,6 @@ const Auth = () => {
             error={error.password}
             onChange={handleChange}
           />
-
           <Button variant='dark' block onClick={handleSignIn}>
             Submit
           </Button>

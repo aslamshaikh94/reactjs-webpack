@@ -9,7 +9,7 @@ import {
 import { userAuthSuccessAction } from '@actions'
 import { validatePassword, validateEmail } from '@utils'
 import {
-  DASHBOARD_ROUTE,
+  REGISTER_COMPANY_ROUTE,
   RESET_PASSWORD_ROUTE,
   LOGIN_ROUTE
 } from '@constants/routes'
@@ -102,7 +102,7 @@ const Register = () => {
             email
           })
         )
-        history.push(DASHBOARD_ROUTE)
+        history.push(REGISTER_COMPANY_ROUTE)
       }
     }
   }
