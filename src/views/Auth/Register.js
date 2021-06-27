@@ -11,7 +11,8 @@ import { validatePassword, validateEmail } from '@utils'
 import {
   REGISTER_COMPANY_ROUTE,
   RESET_PASSWORD_ROUTE,
-  LOGIN_ROUTE
+  LOGIN_ROUTE,
+  DASHBOARD_ROUTE
 } from '@constants/routes'
 import { ERROR_MESSAGES } from '@constants/'
 import { InputField, CheckRadio } from '@shared/FormFields'
@@ -48,15 +49,31 @@ const Register = () => {
   }
 
   const {
+    firstNameErrorMessage,
+    lastNameErrorMessage,
+    companyNameErrorMessage,
     passwordNotMatchErrorMessage,
     passwordErrorMessage,
     emailErrorMessage
   } = ERROR_MESSAGES
 
   const isFormValid = () => {
+    let firstNameError
+    let lastNameError
+    let companyNameError
     let confirmPass
     let validPass
     let validEmail
+
+    if (!firstName) {
+      firstNameError = firstNameErrorMessage
+    }
+    if (!lastName) {
+      lastNameError = lastNameErrorMessage
+    }
+    if (!lastName) {
+      companyNameError = companyNameErrorMessage
+    }
     if (!validateEmail(email)) {
       validEmail = emailErrorMessage
     }
@@ -66,9 +83,19 @@ const Register = () => {
     if (password !== confirmPassword) {
       confirmPass = passwordNotMatchErrorMessage
     }
-    if (confirmPass || validPass || validEmail) {
+    if (
+      firstNameError ||
+      lastNameError ||
+      companyNameError ||
+      confirmPass ||
+      validPass ||
+      validEmail
+    ) {
       setError({
         ...error,
+        firstName: firstNameError,
+        lastName: lastNameError,
+        companyName: companyNameError,
         confirmPassword: confirmPass,
         password: validPass,
         email: validEmail
@@ -80,11 +107,8 @@ const Register = () => {
   }
 
   const payload = {
-    firstName,
-    lastName,
-    companyName,
-    email,
-    isSupplier
+    personalDetails: { firstName, lastName, email },
+    companyDetails: { companyName, isSupplier }
   }
 
   const handleSignUp = async () => {
@@ -102,7 +126,8 @@ const Register = () => {
             email
           })
         )
-        history.push(REGISTER_COMPANY_ROUTE)
+        if (isSupplier) history.push(REGISTER_COMPANY_ROUTE)
+        else history.push(DASHBOARD_ROUTE)
       }
     }
   }

@@ -10,7 +10,8 @@ import {
   RESET_PASSWORD_ROUTE,
   REGISTER_ROUTE,
   SEARCH_ROUTE,
-  REGISTER_COMPANY_ROUTE
+  REGISTER_COMPANY_ROUTE,
+  PRODUCTS_ROUTE
 } from '@constants/routes'
 import history from '@history/'
 import Header from '@src/components/Header'
@@ -24,6 +25,7 @@ const ResetPassword = lazy(() => import('@views/Auth/ResetPassword'))
 const Register = lazy(() => import('@views/Auth/Register'))
 const CompanyRegister = lazy(() => import('@views/Auth/CompanyRegister'))
 const SearchResults = lazy(() => import('@views/SearchResults'))
+const ProductDetails = lazy(() => import('@views/ProductDetails'))
 
 import './style.scss'
 
@@ -43,7 +45,12 @@ const App = () => {
             <Route exact path={SEARCH_ROUTE} component={SearchResults} />
             <Route exact path={LOGIN_ROUTE} component={Auth} />
             <Route exact path={REGISTER_ROUTE} component={Register} />
-            <PrivateRoute exact path={DASHBOARD_ROUTE} component={Dashboard} />
+            <PrivateRoute path={DASHBOARD_ROUTE} component={Dashboard} />
+            <Route
+              exact
+              path={`${PRODUCTS_ROUTE}/:id`}
+              component={ProductDetails}
+            />
             <Route
               exact
               path={RESET_PASSWORD_ROUTE}

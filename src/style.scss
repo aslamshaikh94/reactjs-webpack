@@ -14,3 +14,17 @@ body {
 * {
   box-sizing: border-box;
 }
+.table {
+  &.table-sm {
+    font-size: 0.9rem;
+  }
+}
+
+.ListingDropBtn {
+  float: right;
+  .dropdown-toggle {
+    &::before {
+      display: none;
+    }
+  }
+}
