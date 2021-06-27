@@ -65,24 +65,13 @@ const Register = () => {
     let validPass
     let validEmail
 
-    if (!firstName) {
-      firstNameError = firstNameErrorMessage
-    }
-    if (!lastName) {
-      lastNameError = lastNameErrorMessage
-    }
-    if (!lastName) {
-      companyNameError = companyNameErrorMessage
-    }
-    if (!validateEmail(email)) {
-      validEmail = emailErrorMessage
-    }
-    if (!validatePassword(password)) {
-      validPass = passwordErrorMessage
-    }
-    if (password !== confirmPassword) {
-      confirmPass = passwordNotMatchErrorMessage
-    }
+    if (!firstName) firstNameError = firstNameErrorMessage
+    if (!lastName) lastNameError = lastNameErrorMessage
+    if (!lastName) companyNameError = companyNameErrorMessage
+    if (!validateEmail(email)) validEmail = emailErrorMessage
+    if (!validatePassword(password)) validPass = passwordErrorMessage
+    if (password !== confirmPassword) confirmPass = passwordNotMatchErrorMessage
+
     if (
       firstNameError ||
       lastNameError ||

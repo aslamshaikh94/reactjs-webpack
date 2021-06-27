@@ -4,7 +4,7 @@ import { ERROR_MESSAGES } from '@constants/'
 import { useStore } from '@store'
 import { validateEmail, getInputVal } from '@utils'
 import { Button, Row, Col } from 'react-bootstrap'
-import { InputField } from '@shared/FormFields'
+import { InputField, PhoneInputField } from '@shared/FormFields'
 import PageTitle from '@shared/PageTitle'
 import PageWrapper from '@shared/PageWrapper'
 import Modal from '@shared/Modal'
@@ -38,10 +38,13 @@ const MyAccount = () => {
     firstName = '',
     lastName = '',
     city = '',
-    phone = '',
     country = '',
-    email = ''
+    email = '',
+    isSupplier,
+    phoneData = {}
   } = myAccount
+
+  const { phone } = phoneData
 
   const payload = {
     companyDetails: {
@@ -51,6 +54,7 @@ const MyAccount = () => {
       number,
       postcode,
       city,
+      phoneData,
       country
     },
     personalDetails: {
@@ -69,6 +73,18 @@ const MyAccount = () => {
       setMyAccount({ ...myAccount, [name]: val })
       setError({ ...error, [name]: '' })
     }
+  }
+
+  const handlePhone = (value, data) => {
+    setMyAccount({
+      ...myAccount,
+      phoneData: {
+        rawPhone: value.slice(data.dialCode.length),
+        phone: value,
+        ...data
+      }
+    })
+    setError({ ...error, phone: '' })
   }
 
   const handleSelectedImages = images => {
@@ -104,13 +120,15 @@ const MyAccount = () => {
     if (!firstName) isFirstName = firstNameErrorMessage
     if (!lastName) isLastName = lastNameErrorMessage
     if (!companyName) isCompanyName = companyNameErrorMessage
-    if (!taxId) isTaxId = taxIdErrorMessage
-    if (!streetName) isStreetName = streetNameErrorMessage
-    if (!number) isNumber = numberErrorMessage
-    if (!postcode) isPostcode = postcodeErrorMessage
-    if (!city) isCity = cityErrorMessage
-    if (!country) isCountry = countryErrorMessage
     if (!validateEmail(email)) isEmail = emailErrorMessage
+    if (isSupplier) {
+      if (!taxId) isTaxId = taxIdErrorMessage
+      if (!streetName) isStreetName = streetNameErrorMessage
+      if (!number) isNumber = numberErrorMessage
+      if (!postcode) isPostcode = postcodeErrorMessage
+      if (!city) isCity = cityErrorMessage
+      if (!country) isCountry = countryErrorMessage
+    }
 
     if (
       isFirstName ||
@@ -197,74 +215,78 @@ const MyAccount = () => {
                   />
                 </Col>
               </Row>
-              <hr />
-              <h6>Company Details:</h6>
-              <Row>
-                <Col lg={6} sm={12}>
-                  <InputField
-                    label='Complete VAT / Tax ID Number'
-                    name='taxId'
-                    value={taxId}
-                    error={error.taxId}
-                    onChange={handleChange}
-                  />
-                </Col>
-                <Col lg={6} sm={12}>
-                  <InputField
-                    label='Street Name'
-                    name='streetName'
-                    value={streetName}
-                    error={error.streetName}
-                    onChange={handleChange}
-                  />
-                </Col>
-                <Col lg={6} sm={12}>
-                  <InputField
-                    label='Number'
-                    name='number'
-                    value={number}
-                    error={error.number}
-                    onChange={handleChange}
-                  />
-                </Col>
-                <Col lg={6} sm={12}>
-                  <InputField
-                    label='Post Code'
-                    name='postcode'
-                    value={postcode}
-                    error={error.postcode}
-                    onChange={handleChange}
-                  />
-                </Col>
-                <Col lg={6} sm={12}>
-                  <InputField
-                    label='City'
-                    name='city'
-                    value={city}
-                    error={error.city}
-                    onChange={handleChange}
-                  />
-                </Col>
-                <Col lg={6} sm={12}>
-                  <InputField
-                    label='Phone'
-                    name='phone'
-                    value={phone}
-                    type='phone'
-                    error={error.phone}
-                    onChange={handleChange}
-                  />
-                </Col>
-                <Col lg={6} sm={12}>
-                  <InputField
-                    label='Country'
-                    name='country'
-                    value={country}
-                    error={error.country}
-                    onChange={handleChange}
-                  />
-                </Col>
-              </Row>
+              {isSupplier && (
+                <>
+                  <hr />
+                  <h6>Company Details:</h6>
+                  <Row>
+                    <Col lg={6} sm={12}>
+                      <InputField
+                        label='Complete VAT / Tax ID Number'
+                        name='taxId'
+                        value={taxId}
+                        error={error.taxId}
+                        onChange={handleChange}
+                      />
+                    </Col>
+                    <Col lg={6} sm={12}>
+                      <InputField
+                        label='Street Name'
+                        name='streetName'
+                        value={streetName}
+                        error={error.streetName}
+                        onChange={handleChange}
+                      />
+                    </Col>
+                    <Col lg={6} sm={12}>
+                      <InputField
+                        label='Number'
+                        name='number'
+                        value={number}
+                        error={error.number}
+                        onChange={handleChange}
+                      />
+                    </Col>
+                    <Col lg={6} sm={12}>
+                      <InputField
+                        label='Post Code'
+                        name='postcode'
+                        value={postcode}
+                        error={error.postcode}
+                        onChange={handleChange}
+                      />
+                    </Col>
+                    <Col lg={6} sm={12}>
+                      <InputField
+                        label='City'
+                        name='city'
+                        value={city}
+                        error={error.city}
+                        onChange={handleChange}
+                      />
+                    </Col>
+                    <Col lg={6}>
+                      <PhoneInputField
+                        label='Phone'
+                        name='phone'
+                        country={'in'}
+                        value={phone}
+                        onChange={handlePhone}
+                        error={error.phone}
+                      />
+                    </Col>
+                    <Col lg={6} sm={12}>
+                      <InputField
+                        label='Country'
+                        name='country'
+                        value={country}
+                        error={error.country}
+                        onChange={handleChange}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
             </div>
           </PageWrapper>
         </Col>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
+import PhoneInput from 'react-phone-input-2'
 import './index.scss'
 
 const Label = ({ title }) => {
@@ -12,6 +13,7 @@ const InputField = props => {
     mb,
     bg = '',
     label,
+    labelSmall,
     value = '',
     subtext,
     error = '',
@@ -20,7 +22,11 @@ const InputField = props => {
 
   return (
     <Form.Group className={`FormFieldGroup ${mb} ${className}`}>
-      {label && <Form.Label>{label}</Form.Label>}
+      {label && (
+        <Form.Label>
+          {label} {labelSmall && <small>{labelSmall}</small>}
+        </Form.Label>
+      )}
       <Form.Control
         isInvalid={!!error}
         value={value || ''}
@@ -214,6 +220,18 @@ const InputTags = props => {
   )
 }
 
+const PhoneInputField = props => {
+  const { label, subtext, error = '', mb, ...Rest } = props
+  return (
+    <Form.Group className={`FormFieldGroup ${mb}`}>
+      {label && <Form.Label>{label}</Form.Label>}
+      <PhoneInput {...Rest} />
+      {subtext && <Form.Text className='text-muted'>{subtext}</Form.Text>}
+      {error && <div className='ErrorMessage'>{error}</div>}
+    </Form.Group>
+  )
+}
+
 export {
   Label,
   InputField,
@@ -222,5 +240,6 @@ export {
   CheckRadio,
   Switch,
   Textarea,
-  InputTags
+  InputTags,
+  PhoneInputField
 }

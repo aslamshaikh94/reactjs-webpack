@@ -1,35 +1,53 @@
 import React, { useState } from 'react'
+import history from '@history'
 import { useStore } from '@store/'
 import { callSetUserDetailsApi } from '@api'
 import { DASHBOARD_ROUTE } from '@constants/routes'
 import { TAX_SUBTEXT } from '@constants/'
-import { InputField } from '@shared/FormFields'
+import { InputField, PhoneInputField } from '@shared/FormFields'
 import { Button, Row, Col } from 'react-bootstrap'
 import LoginbgURL from '@assets/images/loginbg.jpg'
 import './index.scss'
 
-const CompanyRegister = () => {
+const RegisterCompany = () => {
   const {
     state: {
-      loggedInUserData: { uid }
+      loggedInUserData: { uid },
+      profileDetails: { companyDetails = {} } = {}
     }
   } = useStore()
 
   const [error, setError] = useState({})
 
-  const [user, setUser] = useState({
-    isSupplier: false,
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
+  const [user, setUser] = useState(companyDetails)
 
-  const { taxId, streetName, number, postcode, city, phone, country } = user
+  const {
+    taxId,
+    streetName,
+    number,
+    postcode,
+    city,
+    phoneData = {},
+    country
+  } = user
+  const { phone } = phoneData
 
   const handleChange = e => {
     const { name, value } = e.target
     setUser({ ...user, [name]: value })
     setError({ ...error, [name]: '' })
+  }
+
+  const handlePhone = (value, data) => {
+    setUser({
+      ...user,
+      phoneData: {
+        rawPhone: value.slice(data.dialCode.length),
+        phone: value,
+        ...data
+      }
+    })
+    setError({ ...error, phone: '' })
   }
 
   const isFormValid = () => {
@@ -137,6 +155,7 @@ const CompanyRegister = () => {
             <Col lg={5}>
               <InputField
                 label='Number'
+                labelSmall='- Optional'
                 name='number'
                 value={number}
                 error={error.number}
@@ -162,13 +181,13 @@ const CompanyRegister = () => {
               />
             </Col>
           </Row>
-          <InputField
+          <PhoneInputField
             label='Phone'
             name='phone'
+            country={'in'}
             value={phone}
-            type='phone'
+            onChange={handlePhone}
             error={error.phone}
-            onChange={handleChange}
           />
           <InputField
             label='Country'
@@ -198,4 +217,4 @@ const CompanyRegister = () => {
   )
 }
 
-export default CompanyRegister
+export default RegisterCompany

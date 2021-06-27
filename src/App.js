@@ -23,7 +23,7 @@ const Dashboard = lazy(() => import('@views/Dashboard'))
 const NotFound = lazy(() => import('@views/NotFound'))
 const ResetPassword = lazy(() => import('@views/Auth/ResetPassword'))
 const Register = lazy(() => import('@views/Auth/Register'))
-const CompanyRegister = lazy(() => import('@views/Auth/CompanyRegister'))
+const RegisterCompany = lazy(() => import('@views/Auth/RegisterCompany'))
 const SearchResults = lazy(() => import('@views/SearchResults'))
 const ProductDetails = lazy(() => import('@views/ProductDetails'))
 
@@ -59,7 +59,7 @@ const App = () => {
             <Route
               exact
               path={REGISTER_COMPANY_ROUTE}
-              component={CompanyRegister}
+              component={RegisterCompany}
             />
             <Route component={NotFound} />
           </Switch>

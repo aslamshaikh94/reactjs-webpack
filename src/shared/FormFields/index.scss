@@ -1,4 +1,5 @@
 @import '@shared/_colors', '@shared/_mixins';
+@import '~react-phone-input-2/lib/style.css';
 
 .form-group {
   flex-grow: 1;
@@ -28,6 +29,9 @@
         background-color: transparent;
       }
     }
+  }
+  .react-tel-input .form-control {
+    width: 100%;
   }
 }
 
