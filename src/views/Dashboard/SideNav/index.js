@@ -14,6 +14,7 @@ const SideNav = () => {
   } = useStore()
 
   const { url } = useRouteMatch()
+
   return (
     <div className='SideNav'>
       <NavLink to={`${url}/home`} className='Nav'>

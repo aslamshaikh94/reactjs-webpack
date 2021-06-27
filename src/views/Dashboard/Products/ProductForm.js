@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useStore } from '@store/'
 import { getInputVal } from '@utils/'
+import { DASHBOARD_ROUTE, PRODUCTS_ROUTE } from '@constants/routes'
 import {
   callAddProductApi,
   callGetUserProductApi,
@@ -14,7 +15,7 @@ import { InputField } from '@shared/FormFields'
 import Modal from '@shared/Modal'
 import ProductImagesGallery from '@shared/ProductImagesGallery'
 import { Row, Col, Button } from 'react-bootstrap'
-import { useParams } from 'react-router'
+import { useParams, useRouteMatch } from 'react-router'
 import './index.scss'
 
 const ProductForm = () => {
@@ -22,6 +23,7 @@ const ProductForm = () => {
     state: { loggedInUserData: { uid } = {} },
     dispatch
   } = useStore()
+
   const { id } = useParams()
 
   const [error, setError] = useState({})
@@ -92,7 +94,10 @@ const ProductForm = () => {
 
   return (
     <>
-      <PageTitle title='Product' />
+      <PageTitle
+        title='Product'
+        onback={`${DASHBOARD_ROUTE}${PRODUCTS_ROUTE}`}
+      />
       <Row>
         <Col lg={8}>
           <PageWrapper>
