@@ -1,0 +1,8 @@
+export const HOME_ROUTE = '/'
+export const AUTH_ROUTE = '/auth'
+export const RESET_PASSWORD_ROUTE = '/reset-password'
+export const VENDOR_REGISTRATION_ROUTE = '/registration'
+export const MY_PROFILE_ROUTE = '/my-profile'
+export const DASHBOARD_ROUTE = '/dashboard'
+export const PRODUCTS_ROUTE = '/products'
+export const ORDERS_ROUTE = '/orders'

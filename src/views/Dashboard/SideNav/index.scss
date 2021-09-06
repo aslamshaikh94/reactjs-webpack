@@ -1,0 +1,29 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.SideNav {
+  width: 240px;
+  height: calc(100vh - 72px);
+  background-color: $white;
+  flex-shrink: 0;
+  position: sticky;
+  top: 72px;
+  @media (max-width: $mobileTab) {
+    display: none;
+  }
+  .Nav {
+    display: block;
+    padding: 10px 15px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: $pinkishGrey;
+    &.active {
+      background-color: $pinkishGrey;
+      color: $white;
+    }
+    > i {
+      margin-right: 8px;
+      font-size: 15px;
+    }
+  }
+}

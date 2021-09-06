@@ -1,0 +1,107 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.form-group {
+  flex-grow: 1;
+  .form-text {
+    text-align: right;
+  }
+  &.FormFieldGroup {
+    font-family: 'Roboto', sans-serif;
+    &.None {
+      margin: 0;
+    }
+    .Inline {
+      margin-right: 1rem;
+    }
+    .Top {
+      display: block;
+    }
+    .OptionsGroup {
+      @include flex($f: inline-flex, $a: center);
+      height: calc(2rem + 0.75rem + 2px);
+    }
+    .form-control,
+    .custom-select {
+      border-radius: 2px;
+      height: calc(2rem + 0.75rem + 2px);
+      &.None {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.tags-input {
+  @include flex($a: center, $w: wrap);
+  padding: 2px;
+  border: 1px solid rgb(214, 216, 218);
+  border-radius: 6px;
+  &:focus-within {
+    border: 1px solid $pinkishGrey;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    .tag {
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      padding: 5px 8px;
+      font-size: 1rem;
+      list-style: none;
+      border-radius: 6px;
+      background: $pinkishGrey;
+      margin: 2px;
+      .tag-close-icon {
+        display: block;
+        width: 16px;
+        height: 16px;
+        line-height: 15px;
+        text-align: center;
+        font-size: 14px;
+        margin-left: 8px;
+        color: $pinkishGrey;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+      }
+    }
+  }
+  input {
+    flex: 1;
+    border: none;
+    padding: 9px;
+    &:focus {
+      outline: transparent;
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .tags-input {
+    width: calc(100vw - 32px);
+  }
+}
+
+.InputGroup {
+  @include flex($w: nowrap);
+  .form-label {
+    flex-grow: 1;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

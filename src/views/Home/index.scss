@@ -1,0 +1,15 @@
+@import '@shared/_colors', '@shared/_mixins';
+.Home {
+  .Banner {
+    .BannerImg {
+      width: 100%;
+      max-height: 400px;
+    }
+  }
+  .Products {
+    margin: 30px 0;
+    .ProductsGroup {
+      @include flex($w: wrap);
+    }
+  }
+}

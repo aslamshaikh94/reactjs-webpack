@@ -1,0 +1,8 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.PageWrapper {
+  padding: 30px;
+  background-color: $white;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}

@@ -1,0 +1,130 @@
+@import '@shared/_colors', '@shared/_mixins';
+
+.Headerbar {
+  background-color: $white;
+  box-shadow: 0 2px 1px #0000000a;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  .NavBar {
+    height: 72px;
+    @include flex($a: center);
+    .Notify {
+      position: relative;
+      .Count {
+        @include flex($a: center, $j: center);
+        top: -5px;
+        right: -10px;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 100px;
+        background-color: $red;
+        color: $white;
+        font-size: 10px;
+      }
+    }
+    .HeaderSearch {
+      @include flex($a: center);
+      position: relative;
+      border-radius: 100px;
+      border: 1px solid $silver;
+      @media (max-width: $mobileTab) {
+        display: none;
+      }
+      .SearchIcon {
+        margin-left: 10px;
+        position: relative;
+      }
+      .form-control {
+        color: $white;
+        border: none;
+      }
+    }
+  }
+  a.Logo {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    color: $black;
+    text-decoration: none;
+    margin-right: 30px;
+    img {
+      margin-right: 1rem;
+      width: 150px;
+    }
+  }
+  .LeftMenu {
+    @include flex($a: center);
+    gap: 2rem;
+    @media (max-width: $mobileTab) {
+      display: none;
+    }
+    .NavItem {
+      font-size: 1.15rem;
+      color: $white;
+    }
+  }
+  .RightNav {
+    @include flex($a: center);
+    margin-left: auto;
+    gap: 2rem;
+    @media (max-width: $mobileTab) {
+      gap: 1.5rem;
+    }
+    .NavItem {
+      font-size: 1.15rem;
+      color: $white;
+    }
+  }
+  .LoginUserDetails {
+    margin-left: auto;
+  }
+  .ProfileMenu {
+    .dropdown-toggle {
+      padding: 0;
+    }
+    .dropdown-menu {
+      margin-left: auto !important;
+      right: 0;
+    }
+    .DeopdownLink {
+      display: block;
+      padding: 5px 10px;
+      color: $darkBlue;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        background-color: $lightGray;
+      }
+    }
+    a.dropdown-toggle.nav-link {
+      &::after {
+        display: none;
+      }
+    }
+  }
+  .UserProfilePic {
+    width: 45px;
+    height: 45px;
+    border-radius: 100px;
+    border: 1px solid $silver;
+    background-color: $purple;
+    text-align: center;
+    font-size: 1.71rem;
+    font-family: 'Roboto', sans-serif;
+    object-fit: cover;
+  }
+}
+.SubHeader {
+  @include flex($j: space-between, $a: center);
+  padding: 30px 0;
+  font-size: 1.14rem;
+  font-weight: 500;
+  .ChildTitle {
+    color: $doveGray;
+  }
+}
