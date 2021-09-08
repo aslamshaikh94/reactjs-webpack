@@ -5,14 +5,14 @@ import rootReducer, { initialState } from '@reducers/'
  Set store globally
  */
 export const setAppStore = store => {
-  localStorage.setItem('vivamomyStore', JSON.stringify(store))
+  localStorage.setItem('store', JSON.stringify(store))
 }
 
 /**
  This store can use globally out of componet
  */
 export const getAppStore = () => {
-  return JSON.parse(localStorage.getItem('vivamomyStore')) || {}
+  return JSON.parse(localStorage.getItem('store')) || {}
 }
 
 /**

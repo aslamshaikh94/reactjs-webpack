@@ -1,5 +1,4 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
 import { isUserLoggedIn } from '@utils'
 import { AUTH_ROUTE } from '@constants/routes'
 

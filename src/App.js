@@ -1,45 +1,40 @@
-import React from 'react'
-import Loader from '@shared/Loader'
-import PrivateRoute from '@shared/PrivateRoute'
-import { Router, Switch, Route } from 'react-router-dom'
-import {
-  AUTH_ROUTE,
-  RESET_PASSWORD_ROUTE,
-  DASHBOARD_ROUTE,
-  HOME_ROUTE,
-  PRODUCTS_ROUTE
-} from '@constants/routes'
+import React, { Suspense } from 'react'
+import { useStore } from '@store'
 import history from '@history/'
-import Auth from '@views/Auth'
-import Dashboard from '@views/Dashboard'
-import ProductDetails from '@views/ProductDetails'
+import Loader from '@shared/Loader'
+// import PrivateRoute from '@shared/PrivateRoute'
+import { Router, Switch, Route } from 'react-router-dom'
+// import { HOME_ROUTE } from '@constants/routes'
 import NotFound from '@views/NotFound'
-import ResetPassword from '@views/Auth/ResetPassword'
-import { ToastContainer } from 'react-toastify'
-import Home from '@views/Home'
 import './style.scss'
 
 const App = () => {
-  return (
-    <div>
-      <Router history={history}>
-        <Switch>
-          <PrivateRoute path={DASHBOARD_ROUTE} component={Dashboard} />
-          <Route exact path={AUTH_ROUTE} component={Auth} />
-          <Route exact path={RESET_PASSWORD_ROUTE} component={ResetPassword} />
-          <Route exact path={HOME_ROUTE} component={Home} />
-          <Route
-            exact
-            path={`${PRODUCTS_ROUTE}/:id`}
-            component={ProductDetails}
-          />
+  const {
+    dispatch,
+    state: { isAppLoading = false, snackbarData = {} }
+  } = useStore()
+  const { visible, message, type } = snackbarData
 
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
-      <ToastContainer />
-      <Loader />
-    </div>
+  return (
+    <>
+      {isAppLoading && <Loader />}
+
+      {visible && (
+        <Snackbar
+          isOpen={visible}
+          message={message}
+          type={type}
+          showDuration={5000}
+        />
+      )}
+      <Suspense fallback={<Loader />}>
+        <Router history={history}>
+          <Switch>
+            <Route component={NotFound} />
+          </Switch>
+        </Router>
+      </Suspense>
+    </>
   )
 }
 

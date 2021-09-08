@@ -1,95 +1,43 @@
 import {
-  USER_AUTH_SUCCESS,
-  USER_DETAILS_SUCCESS,
-  SEARCH_PROFILES_SUCCESS,
-  BID_DETAILS_SUCCESS,
-  BIDS_SUCCESS,
-  EXPERT_PROFILES_SUCCESS,
-  NOTIFICATION_SUCCESS,
-  PRODUCT_DETAILS_SUCCESS
-} from '@constants/actionsType'
-
-/**
- * Set Loader
- * @param {String} payload
- */
-export const setLodingStatusAction = payload => {
-  const loader = document.querySelector('.Loader')
-  if (payload === true) {
-    loader.classList.add('ShowLoader')
-  } else {
-    loader.classList.remove('ShowLoader')
-  }
-}
+  USER_LOGIN_SUCCESS,
+  SET_APPLICATION_LOADING_STATUS,
+  SHOW_SNACKBAR,
+  HIDE_SNACKBAR
+} from '@constants/actionTypes'
 
 /**
  * Sets user info and token in the context store
  * @param {Object} payload The user login data
  */
-export const userAuthSuccessAction = payload => ({
-  type: USER_AUTH_SUCCESS,
+export const userLoginSuccessAction = payload => ({
+  type: USER_LOGIN_SUCCESS,
   payload
 })
 
 /**
- * Sets user info and token in the context store
- * @param {Object} payload The user login data
+ * Sets loading status in the context store so that a loader can be
+ * displayed when appropriate
+ * @param {Boolean} payload Whether the app is in loading state
  */
-export const userSetUserDetailsSuccessAction = payload => ({
-  type: USER_DETAILS_SUCCESS,
+export const setApplicationLoadingStatusAction = payload => ({
+  type: SET_APPLICATION_LOADING_STATUS,
   payload
 })
 
 /**
- * Sets profiles list and
- * @param {Object} payload The user login data
+ * Sets visible snackbar message and type in store
+ * @param {Object} payload
+ * @param {string} payload.message The message to show in snackbar
+ * @param {'error'|'info'|'success'} payload.type The type of snackbar
  */
-export const userSetProfilesSuccessAction = payload => ({
-  type: SEARCH_PROFILES_SUCCESS,
+export const showSnackbarAction = payload => ({
+  type: SHOW_SNACKBAR,
   payload
 })
 
 /**
- * Sets expert profiles list and
- * @param {Object} payload The user login data
+ * Show snackbar visible to false in store
  */
-export const userSetExpertProfilesSuccessAction = payload => ({
-  type: EXPERT_PROFILES_SUCCESS,
-  payload
-})
-
-/**
- * Sets profiles bid details
- * @param {Object} payload The user login data
- */
-export const userSetBidDetailsSuccessAction = payload => ({
-  type: BID_DETAILS_SUCCESS,
-  payload
-})
-
-/**
- * Set profiles bid details
- * @param {Object} payload The Bid Recieved data
- */
-export const userSetBidsSuccessAction = payload => ({
-  type: BIDS_SUCCESS,
-  payload
-})
-
-/**
- * Set profiles bid details
- * @param {Object} payload The Bid Recieved data
- */
-export const userSetNotificationSuccessAction = payload => ({
-  type: NOTIFICATION_SUCCESS,
-  payload
-})
-
-/**
- * Set product details
- * @param {Object} payload The Bid Recieved data
- */
-export const userSetProductSuccessAction = payload => ({
-  type: PRODUCT_DETAILS_SUCCESS,
-  payload
+export const hideSnackbarAction = () => ({
+  type: HIDE_SNACKBAR
 })

@@ -1,25 +1,13 @@
 @import '@shared/_colors', '@shared/_mixins';
-@import '~bootstrap/scss/bootstrap';
-@import '~react-toastify/dist/ReactToastify.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500&family=Poppins:wght@300;400;500&family=Roboto:wght@200;300;400;500&display=swap');
 
 html,
 body {
   margin: 0 auto;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  background-color: #e5e5e5;
-  color: #444444;
+  background-color: $white;
+  color: $black;
 }
 * {
   box-sizing: border-box;
-}
-
-.ListingDropBtn {
-  float: right;
-  .dropdown-toggle {
-    &::before {
-      display: none;
-    }
-  }
 }

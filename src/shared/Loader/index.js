@@ -4,7 +4,7 @@ import './index.scss'
 
 const Loader = () => {
   return (
-    <div className="Loader">
+    <div className='Loader'>
       <img src={LoaderImage} />
     </div>
   )
