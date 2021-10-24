@@ -43,3 +43,56 @@ export const ERROR_MESSAGES = {
   ifscCodeErrorMessage: 'Please enter IFSC code',
   branchLocationErrorMessage: 'Please enter branch location'
 }
+
+export const NAV_ITEMS = [
+  {
+    title: 'Products',
+    items: [
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators'
+    ]
+  },
+  {
+    title: 'Parts & Service',
+    items: [
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators'
+    ]
+  },
+  {
+    title: 'About Us',
+    items: [
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators'
+    ]
+  },
+  {
+    title: 'Industries',
+    items: [
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators'
+    ]
+  },
+  {
+    title: 'Resources',
+    items: [
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators',
+      'Diesel Generators'
+    ]
+  }
+]
