@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 import { NAV_ITEMS } from '../../constants'
 import Logo from '../../assets/images/logo.svg'
 import Location from '../../assets/images/location.svg'
+import Hamburger from '../../assets/images/hamburger.svg'
 import './index.scss'
 
 function Header() {
-  const [show, setShow] = useState(false)
-  const showDropdown = e => {
-    setShow(!show)
-  }
-  const hideDropdown = e => {
-    setShow(false)
+  const [isHamburger, setIsHamburger] = useState(false)
+
+  const handleHamburger = e => {
+    setIsHamburger(!isHamburger)
   }
 
   return (
@@ -46,14 +45,17 @@ function Header() {
       <div className='navbar'>
         <div className='container'>
           <div className='nav-group'>
+            <div className='hamburger'>
+              <img src={Hamburger} onClick={handleHamburger} />
+            </div>
             <div className='logo'>
               <img src={Logo} />
             </div>
-            <ul className='menu'>
+            <ul className={`menu ${isHamburger ? 'open' : ''}`}>
               {NAV_ITEMS.map(item => {
                 return (
                   <li key={item.title}>
-                    {item.title}
+                    <a href='#'>{item.title}</a>
                     <ul className='submenu'>
                       {item.items.map(menu => (
                         <li key={menu}>

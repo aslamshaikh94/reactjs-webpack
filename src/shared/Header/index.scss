@@ -41,6 +41,9 @@ header {
             }
           }
         }
+        @media (max-width: 768px) {
+          display: none;
+        }
       }
     }
   }
@@ -49,6 +52,13 @@ header {
     .nav-group {
       display: flex;
       align-items: center;
+      .hamburger {
+        margin-right: 20px;
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
       .logo {
         margin-right: 25px;
         img {
@@ -57,26 +67,42 @@ header {
         }
       }
       .menu {
-        color: #fff;
         margin: 0;
         padding: 0;
         display: flex;
-        > li {
-          display: flex;
-          align-items: center;
-          padding: 20px 15px;
-          position: relative;
-          &::after {
-            content: '';
+        @media (max-width: 768px) {
+          &.open {
             display: block;
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid #fff;
-            font-size: 0;
-            line-height: 0;
-            margin-left: 5px;
+          }
+          display: none;
+          position: absolute;
+          left: 0;
+          background: #0b1822;
+          width: 100%;
+          top: 82px;
+        }
+        > li {
+          position: relative;
+          a {
+            display: flex;
+            align-items: center;
+            padding: 20px 15px;
+            color: #fff;
+            text-decoration: none;
+            width: 100%;
+
+            &::after {
+              content: '';
+              display: block;
+              width: 0;
+              height: 0;
+              border-left: 5px solid transparent;
+              border-right: 5px solid transparent;
+              border-top: 5px solid #fff;
+              font-size: 0;
+              line-height: 0;
+              margin-left: 5px;
+            }
           }
           .submenu {
             display: none;
@@ -96,6 +122,11 @@ header {
               border: 1px solid #ddd;
               top: 56px;
               left: 0;
+              @media (max-width: 768px) {
+                top: 0;
+                width: 100%;
+                position: relative;
+              }
               li {
                 padding: 0;
                 color: #0b1822;
@@ -113,6 +144,16 @@ header {
               }
             }
           }
+          @media (max-width: 768px) {
+            &:hover {
+              a {
+                color: #0b1822;
+              }
+              &::after {
+                border-top: 5px solid #0b1822;
+              }
+            }
+          }
         }
       }
       .search-box {
@@ -122,6 +163,9 @@ header {
           padding: 10px;
           border: 0;
           border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+          display: none;
         }
       }
     }
