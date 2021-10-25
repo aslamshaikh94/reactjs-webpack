@@ -70,16 +70,29 @@ header {
         margin: 0;
         padding: 0;
         display: flex;
-        @media (max-width: 768px) {
-          &.open {
-            display: block;
-          }
+        .mobilesearch {
           display: none;
+          padding: 15px;
+        }
+        @media (max-width: 768px) {
+          display: block;
           position: absolute;
-          left: 0;
+          left: -100%;
           background: #0b1822;
           width: 100%;
           top: 82px;
+          transition: 0.5s;
+          &.open {
+            left: 0;
+          }
+          .mobilesearch {
+            display: block;
+            .search-input {
+              padding: 5px 10px;
+              width: 100%;
+              border-radius: 5px;
+            }
+          }
         }
         > li {
           position: relative;
@@ -90,7 +103,6 @@ header {
             color: #fff;
             text-decoration: none;
             width: 100%;
-
             &::after {
               content: '';
               display: block;
@@ -110,8 +122,10 @@ header {
           &:hover {
             background-color: #fff;
             color: #0b1822;
-            &:after {
-              border-top: 5px solid #0b1822;
+            a {
+              &:after {
+                border-top: 5px solid #0b1822;
+              }
             }
             .submenu {
               padding: 0;
@@ -133,7 +147,7 @@ header {
                 display: block;
                 white-space: nowrap;
                 a {
-                  display: block;
+                  display: flex;
                   padding: 20px 15px;
                   color: #0b1822;
                   text-decoration: none;
@@ -145,6 +159,7 @@ header {
             }
           }
           @media (max-width: 768px) {
+            border-top: 1px solid #fff;
             &:hover {
               a {
                 color: #0b1822;

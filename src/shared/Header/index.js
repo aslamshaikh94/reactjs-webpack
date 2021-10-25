@@ -52,6 +52,13 @@ function Header() {
               <img src={Logo} />
             </div>
             <ul className={`menu ${isHamburger ? 'open' : ''}`}>
+              <li className='mobilesearch'>
+                <input
+                  type='text'
+                  placeholder='Search'
+                  className='search-input'
+                />
+              </li>
               {NAV_ITEMS.map(item => {
                 return (
                   <li key={item.title}>
