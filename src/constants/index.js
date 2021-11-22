@@ -259,8 +259,8 @@ export const NAV_ITEMS = {
       title: 'About Us',
       items: [
         {
-          menu: 'About Us Placeholder',
-          link: ''
+          menu: 'Virtual Customer Experience Center',
+          link: '/en/generators/industrial/virtual-customer-experience-center'
         }
       ]
     },
@@ -291,10 +291,7 @@ export const NAV_ITEMS = {
           menu: 'Cooperative Purchasing',
           link: '/en/generators/industrial/cooperative-purchasing'
         },
-        {
-          menu: 'Virtual Customer Experience Center',
-          link: '/en/generators/industrial/virtual-customer-experience-center'
-        },
+
         {
           menu: 'Training',
           link: '/en/generators/industrial/training'
@@ -303,12 +300,6 @@ export const NAV_ITEMS = {
           menu: 'Sizing Program',
           link: '/en/generators/industrial/sizing-program'
         }
-        // 'Literature',
-        // 'Technical Resources',
-        // '',
-        // 'BIM Models & Drawings',
-        // '',
-        // 'Videos'
       ]
     }
   ]
@@ -318,70 +309,244 @@ export const COUNTRY_NAV = [
   {
     title: 'GASOLINE, DIESEL & ALTERNATIVE FUEL ENGINES',
     menus: [
-      'North America',
-      'South America',
-      'Mexico',
-      'Europe',
-      'Middle East',
-      'Africa',
-      'China',
-      'India'
+      {
+        name: 'North America',
+        link: ''
+      },
+      {
+        name: 'South America',
+        link: ''
+      },
+      {
+        name: 'Mexico',
+        link: ''
+      },
+      {
+        name: 'Europe',
+        link: ''
+      },
+      {
+        name: 'Middle East',
+        link: ''
+      },
+      {
+        name: 'Africa',
+        link: ''
+      },
+      {
+        name: 'China',
+        link: ''
+      },
+      {
+        name: 'India',
+        link: ''
+      }
     ]
   },
   {
     title: 'INDUSTRIAL & COMMERCIAL GENERATORS',
     menus: [
-      'North America',
-      'Central America',
-      'South America',
-      'Carinhean',
-      'Europe',
-      'Middle East',
-      'Saudi Arabia',
-      'Africa',
-      'China',
-      'India',
-      'Asia-Pacific'
+      {
+        name: 'North America',
+        link: '/na/en'
+      },
+      {
+        name: 'Central America',
+        link: '/latam/en'
+      },
+      {
+        name: 'South America',
+        link: '/latam/en'
+      },
+      {
+        name: 'Caribbean',
+        link: '/latam/en'
+      },
+      {
+        name: 'Europe',
+        link: '/emea/en'
+      },
+      {
+        name: 'Middle East',
+        link: '/emea/en'
+      },
+      {
+        name: 'Saudi Arabia',
+        link: '/emea/en'
+      },
+      {
+        name: 'Africa',
+        link: '/emea/en'
+      },
+      {
+        name: 'China',
+        link: '/cn/cn'
+      },
+      {
+        name: 'India',
+        link: '/in/en'
+      },
+      {
+        name: 'Asia-Pacific',
+        link: '/sea/en'
+      }
     ]
   },
   {
     title: 'ENGINEERED POWER PLANT SOLUTIONS',
-    menus: ['Europe', 'Africa', 'South Asia', 'Australasia', 'North America']
+    menus: [
+      {
+        name: 'Europe',
+        link: ''
+      },
+      {
+        name: 'Africa',
+        link: ''
+      },
+      {
+        name: 'South Asia',
+        link: ''
+      },
+      {
+        name: 'Australia',
+        link: ''
+      },
+      {
+        name: 'North America',
+        link: ''
+      }
+    ]
   },
   {
     title: 'HOME & SMALL BUSINESS GENERATORS',
-    menus: ['North America', 'China', 'Asia-Pacific']
+    menus: [
+      {
+        name: 'North America',
+        link: ''
+      },
+      {
+        name: 'China',
+        link: ''
+      },
+      {
+        name: 'Asia-Pacific',
+        link: ''
+      }
+    ]
   },
   {
     title: 'PORTABLE GENERATORS',
     menus: [
-      'North America',
-      'South America',
-      'Caribbean',
-      'Europe',
-      'Middle East',
-      'Africa',
-      'China',
-      'India',
-      'Asia-Pacific'
+      {
+        name: 'North America',
+        link: ''
+      },
+      {
+        name: 'Central America',
+        link: ''
+      },
+      {
+        name: 'South America',
+        link: ''
+      },
+      {
+        name: 'Caribbean',
+        link: ''
+      },
+      {
+        name: 'Europe',
+        link: ''
+      },
+      {
+        name: 'Middle East',
+        link: ''
+      },
+      {
+        name: 'Saudi Arabia',
+        link: ''
+      },
+      {
+        name: 'Africa',
+        link: ''
+      },
+      {
+        name: 'China',
+        link: ''
+      },
+      {
+        name: 'India',
+        link: ''
+      },
+      {
+        name: 'Asia-Pacific',
+        link: ''
+      }
     ]
   },
   {
     title: 'MARINE GENERATORS',
     menus: [
-      'North America',
-      'South America',
-      'Caribbean',
-      'Europe',
-      'Middle East',
-      'Africa',
-      'China',
-      'India',
-      'Asia-Pacific'
+      {
+        name: 'North America',
+        link: ''
+      },
+      {
+        name: 'Central America',
+        link: ''
+      },
+      {
+        name: 'South America',
+        link: ''
+      },
+      {
+        name: 'Caribbean',
+        link: ''
+      },
+      {
+        name: 'Europe',
+        link: ''
+      },
+      {
+        name: 'Middle East',
+        link: ''
+      },
+      {
+        name: 'Saudi Arabia',
+        link: ''
+      },
+      {
+        name: 'Africa',
+        link: ''
+      },
+      {
+        name: 'China',
+        link: ''
+      },
+      {
+        name: 'India',
+        link: ''
+      },
+      {
+        name: 'Asia-Pacific',
+        link: ''
+      }
     ]
   },
   {
     title: 'UNINTERRUPTIBLE POWER SUPPLIES',
-    menus: ['United Kingdom', 'Ireland', 'Singapore']
+    menus: [
+      {
+        name: 'United Kingdom',
+        link: ''
+      },
+      {
+        name: 'Ireland',
+        link: ''
+      },
+      {
+        name: 'Singapore',
+        link: ''
+      }
+    ]
   }
 ]

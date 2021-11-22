@@ -35,8 +35,8 @@ function Navgroup(props) {
       <ul className={isMenu ? 'open' : ''}>
         {data.menus.map(menu => {
           return (
-            <li key={menu}>
-              <a href='#'> {menu}</a>
+            <li key={menu.name}>
+              <a href={menu.link}> {menu.name}</a>
             </li>
           )
         })}

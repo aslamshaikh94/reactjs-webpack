@@ -27,34 +27,36 @@ function Header() {
   // }
 
   return (
-    <header>
-      <div className='topmenu'>
-        <div className='container'>
-          <div className='menugroup'>
-            <div className='leftmenu'>
-              <img
-                src='https://nav.kohlerpower.com/assets/images/globe-icon-retina@2x.png'
-                className='icon'
-              />
-              <span
-                className='leftmenutitle'
-                onClick={() => setIsCountryMenu(!isCountryMenu)}
-              >
-                KOHLER Power Worldwide{' '}
-                <i
-                  className={`bi bi-caret-${
-                    isCountryMenu ? 'up' : 'down'
-                  }-fill`}
+    <>
+      <header>
+        <div className='topmenu'>
+          <div className='container'>
+            <div className='menugroup'>
+              <div className='leftmenu'>
+                <img
+                  src='https://nav.kohlerpower.com/assets/images/globe-icon-retina@2x.png'
+                  className='icon'
                 />
-              </span>
+                <span
+                  className='leftmenutitle'
+                  onClick={() => setIsCountryMenu(!isCountryMenu)}
+                >
+                  KOHLER Power Worldwide{' '}
+                  <i
+                    className={`bi bi-caret-${
+                      isCountryMenu ? 'up' : 'down'
+                    }-fill`}
+                  />
+                </span>
+              </div>
+              <Rightmenu />
             </div>
-            <Rightmenu />
           </div>
         </div>
-      </div>
-      <Countrymenue isMenu={isCountryMenu} />
+        <Countrymenue isMenu={isCountryMenu} />
+      </header>
       <Navbar />
-    </header>
+    </>
   )
 }
 
