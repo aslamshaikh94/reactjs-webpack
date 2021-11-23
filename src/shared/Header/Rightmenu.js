@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import history from '@history/'
 import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import Location from '../../assets/images/location.svg'
 
 const Rightmenu = () => {
   const { region } = useParams()
   const [isLangMenu, setIsLangMenu] = useState()
-  const [currentRegion, setCurrentRegion] = useState('North America')
-  const [langMenu, setLangMenu] = useState([])
-  const [language, setLanguage] = useState({})
+  const [currentRegion, setCurrentRegion] = useState({
+    countryName: 'North America',
+    countryLang: [{ name: 'English', code: 'na' }]
+  })
+  const [language, setLanguage] = useState({ name: 'English', code: 'na' })
+  const { countryLang = [] } = currentRegion
 
   const regionSelector = [
     {
@@ -66,15 +71,15 @@ const Rightmenu = () => {
   ]
 
   const handleCountry = item => {
-    setLangMenu(item.countryLang)
-    setLanguage(item.countryLang[0])
-    setCurrentRegion(item.countryName)
+    const defaultLag = item.countryLang[0]
+    console.log(defaultLag)
+    history.push(`?lang=${defaultLag.code}`)
+    setLanguage(defaultLag)
+    setCurrentRegion(item)
   }
 
-  const handleRegionSelector = () => {
+  const handleRegionMenu = () => {
     setIsLangMenu(!isLangMenu)
-    setLangMenu(regionSelector[0].countryLang)
-    setLanguage(regionSelector[0].countryLang[0])
   }
 
   const handleSelectLang = lang => {
@@ -96,8 +101,8 @@ const Rightmenu = () => {
           </a>
         </li>
         <li>
-          <a onClick={handleRegionSelector}>
-            {currentRegion} - {language.code}
+          <a onClick={handleRegionMenu}>
+            {currentRegion.countryName} - {language.code}
           </a>
         </li>
       </ul>
@@ -110,13 +115,15 @@ const Rightmenu = () => {
           <div className='body'>
             <div className='items'>
               <ul>
-                {regionSelector.map(item => (
+                {regionSelector.map((item, i) => (
                   <li
                     className={
-                      item.countryName === currentRegion ? 'active' : ''
+                      item.countryName === currentRegion.countryName
+                        ? 'active'
+                        : ''
                     }
                     onClick={() => handleCountry(item)}
-                    key={item.countryName}
+                    key={i}
                   >
                     {item.countryName}
                   </li>
@@ -126,13 +133,13 @@ const Rightmenu = () => {
 
             <div className='items'>
               <ul>
-                {langMenu.map((item, i) => (
+                {countryLang.map((item, i) => (
                   <li
                     className={item.name === language.name ? 'active' : ''}
                     onClick={() => handleSelectLang(item)}
                     key={i}
                   >
-                    {item.name}
+                    <Link to={`?lang=${item.code}`}>{item.name}</Link>
                   </li>
                 ))}
               </ul>
