@@ -1,5 +1,4 @@
 import React from 'react'
-import { callUploadProductImageApi } from '@api/product'
 import { setLodingStatusAction } from '@actions'
 import { useStore } from '@store'
 import addToaster from '@shared/Notification'

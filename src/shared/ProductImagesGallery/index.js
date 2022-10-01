@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useStore } from '@store/'
-import { callGetProductImagesApi } from '@api/product'
 import Dropzone from '@shared/Dropzone'
 import Button from 'react-bootstrap/Button'
 import addToaster from '@shared/Notification'
