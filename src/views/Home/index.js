@@ -6,14 +6,14 @@ const DonutChart = () => {
   useEffect(() => {
     let gauge = new JustGage({
       id: 'gauge', // the id of the html element
-      value: 9,
+      value: 190,
       min: 0,
       max: 147,
       // decimals: 2,
       gaugeWidthScale: 0.2,
       pointer: true,
       pointerValue: 9,
-      levelColors: ['#a9d70b', '#f9c802', '#ff0000'],
+      levelColors: ['#ff0000'],
       // counter: true,
       // customSectors: {
       //   // percents: true, // lo and hi values are in %
